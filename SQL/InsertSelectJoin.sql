@@ -1,0 +1,25 @@
+USE bdCurso;
+
+CREATE TABLE CURSOS (
+	IDCurso INT PRIMARY KEY IDENTITY(100, 1),
+	nomeCurso VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE ALUNOS (
+	IDAluno INT PRIMARY KEY IDENTITY(1000, 1),
+	nomeAluno VARCHAR(80) NOT NULL,
+	IDCurso INT FOREIGN KEY REFERENCES CURSOS(IDCurso)
+);
+
+INSERT INTO CURSOS VALUES ('Introducao a Java');
+INSERT INTO CURSOS VALUES ('Introducao a ASP.NET');
+
+INSERT INTO ALUNOS VALUES ('Clara Marinho', 100);
+INSERT INTO ALUNOS VALUES ('Maria Clara', 101);
+
+SELECT a.IDAluno as 'Matricula', a.nomeAluno as 'Nome', c.nomeCurso as 'Curso', c.IDCurso as 'Cod. Turma'
+FROM ALUNOS a
+JOIN CURSOS c ON c.IDCurso = a.IDCurso;
+
+SELECT * FROM ALUNOS;
+SELECT * FROM CURSOS;
